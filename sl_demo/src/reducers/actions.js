@@ -3,7 +3,6 @@ export const FETCH_ORDER = 'FETCH_ORDER';
 
 //action creators
 export function fetchAction() {
-  console.log('in fetchAction');
   return {
     type: FETCH_ORDER,
   };

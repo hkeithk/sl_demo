@@ -1,8 +1,8 @@
 import { createStore, combineReducers, compose } from 'redux';
-import entityReducer from 'reducers/entityReducer';
+import reducer from 'reducers/entityReducer';
 
 const allReducers = combineReducers({
-  entity: entityReducer,
+  entity: reducer,
 });
 
 const composeEnhancers =

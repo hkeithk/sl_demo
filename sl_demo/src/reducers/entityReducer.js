@@ -3,8 +3,7 @@ import data from 'resources/data.json';
 
 const initialState = {};
 
-function orderReducer(state = initialState, action) {
-  console.log('in reducer');
+function reducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_ORDER:
       return {
@@ -16,4 +15,4 @@ function orderReducer(state = initialState, action) {
   }
 }
 
-export default orderReducer;
+export default reducer;

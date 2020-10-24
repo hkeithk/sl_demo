@@ -3,7 +3,6 @@ import './Chart.css';
 
 export const Chart = (props) => {
   const { salesData } = props;
-  console.log(salesData);
 
   let formatData = (type, data) => {
     let typeCheck = type.toLowerCase();
@@ -18,29 +17,34 @@ export const Chart = (props) => {
     return stringData;
   };
 
+  let table = [];
+  if (salesData !== undefined) {
+    table = salesData.map((sale) => (
+      <tr className='chart-table--row' key={`${sale.weekEnding}`}>
+        {Object.keys(sale).map((key, index) => (
+          <td className='chart-table--cell' key={index}>
+            {formatData(key, sale[key])}
+          </td>
+        ))}
+      </tr>
+    ));
+  }
+
   return (
-    <div>
-      <table>
-        <thead className='table--header'>
-          <th>WEEK ENDINGS</th>
-          <th>RETAIL SALES</th>
-          <th>WHOLESALE SALES</th>
-          <th>UNITS SOLD</th>
-          <th>RETAILER MARGIN</th>
+    <>
+      <table className='table-main'>
+        <thead>
+          <tr>
+            <th className='table--header'>WEEK ENDINGS</th>
+            <th className='table--header'>RETAIL SALES</th>
+            <th className='table--header'>WHOLESALE SALES</th>
+            <th className='table--header'>UNITS SOLD</th>
+            <th className='table--header'>RETAILER MARGIN</th>
+          </tr>
         </thead>
-        <tbody>
-          {salesData.map((sale) => (
-            <tr className='chart-table--row'>
-              {Object.keys(sale).map((key) => (
-                <td className='chart-table--cell'>
-                  {formatData(key, sale[key])}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
+        <tbody>{table}</tbody>
       </table>
-    </div>
+    </>
   );
 };
 

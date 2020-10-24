@@ -1,0 +1,12 @@
+.header-container {
+  width: 100%;
+  margin: 10px 0px 10px 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  box-shadow: 10px 10px 15px 2px #f4f4f4;
+}
+
+.header-logo {
+  width: 10vw;
+  padding: 10px 10px 10px 10px;
+}

@@ -1,6 +1,8 @@
 .outer_container {
   display: flex;
   flex-direction: row;
+  margin-top: 80px;
+  height: 100%;
 }
 
 .sidebar_container {
@@ -9,20 +11,22 @@
   width: 25%;
   box-shadow: 0px 0px 5px 0px #888;
   margin-left: 20px;
-  height: 100vh;
+  margin-right: 25px;
+  height: 100%;
   /* border: 1px solid; */
 }
 
 .main_data_container {
-  border: 1px solid;
+  border: 0.2px solid gray;
   width: 75%;
-  height: 100vh;
-}
-
-.graph_container {
-  border: 1px solid;
+  height: 100%;
+  margin-right: 15px;
 }
 
 .chart_container {
-  border: 1px solid;
+  border: 0px solid gray;
+}
+
+.graph-title {
+  margin-left: 20px;
 }

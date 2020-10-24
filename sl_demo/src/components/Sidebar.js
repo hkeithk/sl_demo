@@ -4,26 +4,29 @@ import './Sidebar.css';
 
 export const Sidebar = (props) => {
   const { data } = props;
-  console.log(data);
 
   const allTags =
-    data.length > 0 &&
+    Object.keys(data).length > 0 &&
     data.tags.map((tag, index) => <Tag tagName={tag} key={index} />);
 
   return (
     <>
       <div className='outer-container'>
-        <div>
-          <img src={data.image} alt='blender' />
+        <div className='inner-container'>
+          <img src={data.image} alt='blender' className='image' />
           <h3>{data.title}</h3>
-          <h4>{data.subtitle}</h4>
+          <p className='subtitle'>{data.subtitle}</p>
         </div>
-        <div>
+        <div className='tag--container'>
           <div className='tag--container-row'>{allTags}</div>
         </div>
-        <div>
-          <h4>OVERVIEW</h4>
-          <h4>SALES</h4>
+        <div className='control--container'>
+          <button className='button'>
+            <p>OVERVIEW</p>
+          </button>
+          <button className='button'>
+            <p>SALES</p>
+          </button>
         </div>
       </div>
     </>

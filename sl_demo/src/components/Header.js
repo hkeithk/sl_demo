@@ -1,10 +1,12 @@
 import React from 'react';
+import stackLineLogo from 'resources/stackline_logo.png';
+import './Header.css';
 
 export const Header = () => {
   return (
-    <div>
-      <h1>Stackline Logo goes here</h1>
-    </div>
+    <header className='header-container'>
+      <img src={stackLineLogo} alt='Stackline Logo' className='header-logo' />
+    </header>
   );
 };
 
