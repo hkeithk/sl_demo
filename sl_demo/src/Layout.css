@@ -13,18 +13,12 @@
   margin-left: 20px;
   margin-right: 25px;
   height: 100%;
-  /* border: 1px solid; */
 }
 
 .main_data_container {
-  border: 0.2px solid gray;
   width: 75%;
   height: 100%;
   margin-right: 15px;
-}
-
-.chart_container {
-  border: 0px solid gray;
 }
 
 .graph-title {

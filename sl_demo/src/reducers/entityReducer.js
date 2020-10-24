@@ -10,6 +10,7 @@ function reducer(state = initialState, action) {
         ...state,
         ...data[0],
       };
+
     default:
       return state;
   }
