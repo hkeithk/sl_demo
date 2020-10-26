@@ -27,9 +27,7 @@ export const Layout = () => {
         </div>
 
         <div className='main_data_container'>
-          <div className='chart_container'>
-            {orderData && <Chart salesData={orderData.sales} />}
-          </div>
+          <div className='chart_container'>{orderData && <Chart />}</div>
 
           <div className='graph_container'>
             <h3 className='graph-title'>Retail Sales</h3>
