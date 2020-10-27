@@ -3,8 +3,7 @@ import { BsChevronCompactDown } from 'react-icons/bs';
 import './Chart.css';
 
 export const Table = (props) => {
-  // const { salesData } = props;
-  console.log(props.salesData);
+  const { salesData, sortBy } = props;
 
   let formatData = (type, data) => {
     let typeCheck = type.toLowerCase();
@@ -20,11 +19,8 @@ export const Table = (props) => {
   };
 
   let table = [];
-  if (
-    props.salesData !== undefined &&
-    Object.keys(props.salesData).length > 0
-  ) {
-    table = props.salesData.map((sale) => (
+  if (salesData !== undefined && salesData.length > 0) {
+    table = salesData.map((sale) => (
       <tr className='chart-table--row' key={`${sale.weekEnding}`}>
         {Object.keys(sale).map((key, index) => (
           <td className='chart-table--cell' key={index}>
@@ -41,7 +37,10 @@ export const Table = (props) => {
         <thead>
           <tr>
             <th className='table--header'>
-              <button className='chart-button'>
+              <button
+                className='chart-button'
+                onClick={() => sortBy('weekEnding')}
+              >
                 WEEK ENDINGS
                 <BsChevronCompactDown />
               </button>
@@ -49,7 +48,7 @@ export const Table = (props) => {
             <th className='table--header'>
               <button
                 className='chart-button'
-                onClick={() => props.sortBy('retailSales')}
+                onClick={() => sortBy('retailSales')}
               >
                 RETAIL SALES
                 <BsChevronCompactDown />
@@ -57,19 +56,28 @@ export const Table = (props) => {
             </th>
 
             <th className='table--header'>
-              <button className='chart-button'>
+              <button
+                className='chart-button'
+                onClick={() => sortBy('wholesaleSales')}
+              >
                 WHOLESALE SALES
                 <BsChevronCompactDown />
               </button>
             </th>
             <th className='table--header'>
-              <button className='chart-button'>
+              <button
+                className='chart-button'
+                onClick={() => sortBy('unitsSold')}
+              >
                 UNITS SOLD
                 <BsChevronCompactDown />
               </button>
             </th>
             <th className='table--header'>
-              <button className='chart-button'>
+              <button
+                className='chart-button'
+                onClick={() => sortBy('retailerMargin')}
+              >
                 RETAILER MARGIN
                 <BsChevronCompactDown />
               </button>
