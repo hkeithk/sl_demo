@@ -1,51 +1,58 @@
 import React from 'react';
 import './Chart.css';
+import Table from 'components/Table';
+import data from 'resources/data';
 
-export const Chart = (props) => {
-  const { salesData } = props;
-
-  let formatData = (type, data) => {
-    let typeCheck = type.toLowerCase();
-    let stringData = data.toString();
-
-    if (typeCheck.includes('sales') || typeCheck.includes('margin')) {
-      return `$${stringData.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
-    } else if (typeCheck.includes('week')) {
-      let date = stringData.split('-');
-      return `${date[1]}-${date[2]}-${date[0].slice(-2)}`;
-    }
-    return stringData;
-  };
-
-  let table = [];
-  if (salesData !== undefined) {
-    table = salesData.map((sale) => (
-      <tr className='chart-table--row' key={`${sale.weekEnding}`}>
-        {Object.keys(sale).map((key, index) => (
-          <td className='chart-table--cell' key={index}>
-            {formatData(key, sale[key])}
-          </td>
-        ))}
-      </tr>
-    ));
+class Chart extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: data[0].sales,
+      direction: {
+        weekEnding: 'asc',
+        retailSales: 'asc',
+        wholesaleSales: 'asc',
+        unitsSold: 'asc',
+        retailerMargin: 'asc',
+      },
+    };
+    this.sortBy = this.sortBy.bind(this);
   }
 
-  return (
-    <>
-      <table className='table-main'>
-        <thead>
-          <tr>
-            <th className='table--header'>WEEK ENDINGS</th>
-            <th className='table--header'>RETAIL SALES</th>
-            <th className='table--header'>WHOLESALE SALES</th>
-            <th className='table--header'>UNITS SOLD</th>
-            <th className='table--header'>RETAILER MARGIN</th>
-          </tr>
-        </thead>
-        <tbody>{table}</tbody>
-      </table>
-    </>
-  );
-};
+  sortBy(key) {
+    let sortedData = [];
+    console.log(this.state.data);
+    if (key.includes('weekEnding')) {
+      sortedData = this.state.data.sort((a, b) =>
+        this.state.direction.weekEnding === 'asc'
+          ? new Date(a[key]) - new Date(b[key])
+          : new Date(b[key]) - new Date(a[key])
+      );
+    } else {
+      sortedData = this.state.data.sort((a, b) =>
+        this.state.direction[key] === 'asc' ? a[key] - b[key] : b[key] - a[key]
+      );
+    }
+
+    this.setState({
+      data: sortedData,
+      direction: {
+        [key]: this.state.direction[key] === 'asc' ? 'dsc' : 'asc',
+      },
+    });
+  }
+
+  render() {
+    return (
+      <>
+        <Table
+          salesData={this.state.data}
+          sortBy={this.sortBy}
+          key={this.state.data}
+        />
+      </>
+    );
+  }
+}
 
 export default Chart;
