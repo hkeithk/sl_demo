@@ -1,6 +1,7 @@
 import Header from 'components/Header';
 import Sidebar from 'components/Sidebar';
 import Chart from 'components/Chart';
+import Graph from 'components/Graph';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import fetchAction from 'reducers/actions';
@@ -27,12 +28,12 @@ export const Layout = () => {
         </div>
 
         <div className='main_data_container'>
+          <div className='graph_container'>
+            <p className='graph-title'>Retail Sales</p>
+            <Graph />
+          </div>
           <div className='chart_container'>
             <Chart />
-          </div>
-
-          <div className='graph_container'>
-            <h3 className='graph-title'>Retail Sales</h3>
           </div>
         </div>
       </div>
